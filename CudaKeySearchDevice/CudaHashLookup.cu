@@ -190,7 +190,7 @@ cudaError_t CudaHashLookup::setTargetBloomFilter(const std::vector<struct hash16
 		delete[] filter;
 		return err;
 	}
-
+	/*Edit for Ubuntu Support
 	// Copy device memory pointer to constant memory
 	if(bloomFilterBits <= 32) {
 		err = cudaMemcpyToSymbol(_BLOOM_FILTER_MASK, &bloomFilterMask, sizeof(unsigned int *));
@@ -211,7 +211,7 @@ cudaError_t CudaHashLookup::setTargetBloomFilter(const std::vector<struct hash16
 			return err;
 		}
 	}
-
+	*/
 	unsigned int useBloomFilter = bloomFilterBits <= 32 ? 1 : 2;
 
 	err = cudaMemcpyToSymbol(_USE_BLOOM_FILTER, &useBloomFilter, sizeof(unsigned int));
